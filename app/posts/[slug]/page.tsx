@@ -8,17 +8,10 @@ import type { Post } from "@/lib/types";
 
 export const revalidate = 60;
 
-// Pre-build a page for every published slug at deploy time. Any slug
-// published later still resolves — Next just renders it on first
-// request and caches it (ISR), no redeploy required.
+// Render published slugs on first request and cache them with ISR.
+// The cookie-aware Supabase client requires an active request scope.
 export async function generateStaticParams() {
-  const supabase = createClient();
-  const { data: posts } = await supabase
-    .from("posts")
-    .select("slug")
-    .eq("status", "published");
-
-  return (posts ?? []).map((post) => ({ slug: post.slug }));
+  return [];
 }
 
 async function getPost(slug: string) {
@@ -42,7 +35,7 @@ export async function generateMetadata({
   if (!post) return {};
 
   return {
-    title: `${post.title} — theworkco`,
+    title: post.title + " — theworkco",
     description: post.excerpt,
     openGraph: {
       title: post.title,
