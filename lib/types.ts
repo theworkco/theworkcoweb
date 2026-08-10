@@ -3,7 +3,7 @@ export interface Post {
   slug: string;
   title: string;
   excerpt: string;
-  body: string; // markdown
+  body: unknown[];
   category: string;
   read_minutes: number;
   status: "draft" | "published";

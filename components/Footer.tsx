@@ -25,7 +25,8 @@ export default function Footer() {
             <div className="footer-col">
               <h4>Ipsum</h4>
               <Link href="/posts">Posts</Link>
-              <Link href="#">Lorem ipsum</Link>
+              <Link href="/contact">Contact</Link>
+              <Link href="mailto:info@theworkco.com">info@theworkco.com</Link>
               <Link href="#">Dolor sit amet</Link>
             </div>
           </div>

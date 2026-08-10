@@ -11,8 +11,8 @@ export default function Header() {
           <Link href="/#grid">Lorem</Link>
           <Link href="/">Ipsum</Link>
           <Link href="/posts">Posts</Link>
-          <Link href="#" className="nav-cta">
-            Lorem ipsum
+          <Link href="/contact" className="nav-cta">
+            Contact
           </Link>
         </nav>
       </div>
