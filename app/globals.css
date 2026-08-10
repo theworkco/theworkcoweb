@@ -129,6 +129,7 @@ nav a.active {
 .section-heading h2, .statement-copy h2, .home-cta h2 { font-family: var(--font-space-grotesk), sans-serif; font-size: clamp(38px, 5vw, 62px); line-height: 1.02; letter-spacing: -.035em; font-weight: 600; margin-top: 18px; }
 .section-heading > p { max-width: 390px; font-size: 15px; line-height: 1.7; color: rgba(27,31,20,.6); }
 .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 58px 24px; }
+.project-card, .project-card:visited { color: var(--ink); text-decoration: none; }
 .project-card.wide { grid-column: span 2; }
 .project-visual { min-height: 390px; position: relative; overflow: hidden; border-radius: 2px; }
 .wide .project-visual { min-height: 510px; }

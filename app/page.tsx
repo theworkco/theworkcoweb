@@ -15,7 +15,7 @@ type Homepage = {
 }
 
 const fallbackProjects: Project[] = [
-  {number: '01', title: 'Lorem ipsum dolor', tag: 'Consectetur', tone: 'lime', size: 'wide'},
+  {number: '01', title: 'Simple. Clean. Helpful', tag: 'Market Times', href: 'https://mrktimes.com', tone: 'lime', size: 'wide'},
   {number: '02', title: 'Sit amet elit', tag: 'Adipiscing', tone: 'forest', size: 'standard'},
   {number: '03', title: 'Sed do eiusmod', tag: 'Tempor', tone: 'paper', size: 'standard'},
   {number: '04', title: 'Incididunt ut labore', tag: 'Dolore', tone: 'olive', size: 'tall'},
@@ -24,12 +24,12 @@ const fallbackProjects: Project[] = [
 ]
 
 const content: Homepage = {
-  eyebrow: 'Recent Work', heroTitle: 'olla.works', heroAccent: 'HIIT Workouts made simple.',
-  heroBody: 'Open your phone, and your workout for the day is there. Single screen, 30 mins. No excuses',
-  primaryButton: {label: 'Check it out', href: '#grid'}, secondaryButton: {label: 'Sign Up', href: 'https://olla.works'},
-  services: ['Lorem ipsum', 'Dolor sit amet', 'Consectetur', 'Adipiscing elit', 'Sed do eiusmod'],
+  eyebrow: 'Recent Work', heroTitle: 'The stories', heroAccent: 'moving your market.',
+  heroBody: 'A single pane of glass to view your portfolio, the news making an impact to it, and its performance.',
+  primaryButton: {label: 'Read More', href: '#grid'}, secondaryButton: {label: 'Visit MRKTIMES', href: 'https://mrktimes.com'},
+  services: ['Branding & Marketing', 'Product Development', 'Strategy & Design'],
   projectsEyebrow: 'Lorem ipsum', projectsTitle: 'Dolor sit amet, consectetur elit.',
-  projectsIntro: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+  projectsIntro: 'Simplifying a view into your trading portfolio, so you can stay ahead of your next trade.',
   projects: fallbackProjects, statementEyebrow: 'Dolor sit amet',
   statementQuote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
   statementBody: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.',
