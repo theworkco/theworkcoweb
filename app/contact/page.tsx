@@ -2,32 +2,15 @@ import type {Metadata} from 'next'
 import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import {client, sanityConfigured} from '@/sanity/lib/client'
 
 export const metadata: Metadata = {
   title: 'Contact | theworkco',
   description: 'Get in touch with theworkco to discuss your next project.',
 }
 
-const fallbackEmail = 'info@theworkco.com'
+const email = 'info@theworkco.com'
 
-async function getContactEmail() {
-  if (!sanityConfigured) return fallbackEmail
-
-  try {
-    return await client.fetch<string | null>(
-      `*[_type == "siteSettings"][0].contactEmail`,
-      {},
-      {next: {revalidate: 60}},
-    ) || fallbackEmail
-  } catch {
-    return fallbackEmail
-  }
-}
-
-export default async function ContactPage() {
-  const email = await getContactEmail()
-
+export default function ContactPage() {
   return (
     <>
       <Header />

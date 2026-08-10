@@ -1,13 +1,9 @@
 import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import {client, sanityConfigured} from '@/sanity/lib/client'
-import {imageUrl} from '@/sanity/lib/image'
-
-export const revalidate = 60
 
 type Button = {label?: string; href?: string}
-type Project = {number?: string; title?: string; tag?: string; href?: string; tone?: string; size?: string; image?: unknown}
+type Project = {number?: string; title?: string; tag?: string; href?: string; tone?: string; size?: string; imageUrl?: string}
 type ProcessStep = {number?: string; title?: string; copy?: string}
 type Homepage = {
   eyebrow?: string; heroTitle?: string; heroAccent?: string; heroBody?: string
@@ -27,10 +23,10 @@ const fallbackProjects: Project[] = [
   {number: '06', title: 'Quis nostrud', tag: 'Exercitation', tone: 'mist', size: 'wide'},
 ]
 
-const fallback: Homepage = {
-  eyebrow: 'Lorem ipsum dolor sit', heroTitle: 'Lorem ipsum', heroAccent: 'dolor sit amet.',
-  heroBody: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  primaryButton: {label: 'Lorem ipsum', href: '#grid'}, secondaryButton: {label: 'Dolor sit amet', href: '#about'},
+const content: Homepage = {
+  eyebrow: 'Recent Work', heroTitle: 'olla.works', heroAccent: 'HIIT Workouts made simple.',
+  heroBody: 'Open your phone, and your workout for the day is there. Single screen, 30 mins. No excuses',
+  primaryButton: {label: 'Check it out', href: '#grid'}, secondaryButton: {label: 'Sign Up', href: 'https://olla.works'},
   services: ['Lorem ipsum', 'Dolor sit amet', 'Consectetur', 'Adipiscing elit', 'Sed do eiusmod'],
   projectsEyebrow: 'Lorem ipsum', projectsTitle: 'Dolor sit amet, consectetur elit.',
   projectsIntro: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
@@ -38,29 +34,15 @@ const fallback: Homepage = {
   statementQuote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
   statementBody: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.',
   statementButton: {label: 'Consectetur elit', href: '#contact'}, processEyebrow: 'Sed do eiusmod',
-  processTitle: 'Lorem ipsum, dolor sit amet.', processSteps: [
-    {number: '01', title: 'Lorem ipsum', copy: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'},
-    {number: '02', title: 'Dolor sit amet', copy: 'Sed do eiusmod tempor incididunt ut labore et dolore magna.'},
-    {number: '03', title: 'Consectetur elit', copy: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco.'},
-  ], ctaEyebrow: 'Lorem ipsum dolor', ctaTitle: 'Consectetur adipiscing elit?', ctaButton: {label: "Let's ipsum", href: '#'},
-}
-
-async function getHomepage(): Promise<Homepage> {
-  if (!sanityConfigured) return fallback
-  try {
-    const data = await client.fetch<Homepage | null>(`*[_type == "homepage"][0]{..., projects[]{...}, processSteps[]{...}}`)
-    return data ? {...fallback, ...data} : fallback
-  } catch {
-    return fallback
-  }
+  processTitle: 'Lorem ipsum, dolor sit amet.', processSteps: [],
+  ctaEyebrow: 'Lorem ipsum dolor', ctaTitle: 'Consectetur adipiscing elit?', ctaButton: {label: "Let's ipsum", href: '/contact'},
 }
 
 function lines(value?: string) {
   return (value || '').split(/\n|,\s+/).filter(Boolean)
 }
 
-export default async function Home() {
-  const content = await getHomepage()
+export default function Home() {
   const titleLines = lines(content.heroTitle)
   const projectTitleLines = lines(content.projectsTitle)
   const processTitleLines = lines(content.processTitle)
@@ -85,7 +67,7 @@ export default async function Home() {
       <section className="projects-section" id="grid"><div className="wrap">
         <div className="section-heading"><div><div className="eyebrow">{content.projectsEyebrow}</div><h2>{projectTitleLines.map((line, i) => <span key={line}>{line}{i < projectTitleLines.length - 1 && <br />}</span>)}</h2></div><p>{content.projectsIntro}</p></div>
         <div className="project-grid">{(content.projects?.length ? content.projects : fallbackProjects).map((project, index) => {
-          const visualUrl = imageUrl(project.image)
+          const visualUrl = project.imageUrl || null
           return <Link href={project.href || '#'} className={`project-card ${project.size || 'standard'}`} key={`${project.number}-${index}`}>
             <div className={`project-visual ${project.tone || 'lime'}`} style={visualUrl ? {backgroundImage: `url(${visualUrl})`, backgroundSize: 'cover', backgroundPosition: 'center'} : undefined}>
               {!visualUrl && <><span className="visual-mark">{project.number}</span><div className="visual-orbit"/><div className="visual-block"/></>}
