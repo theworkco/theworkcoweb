@@ -133,6 +133,17 @@ nav a.active {
 .project-card.wide { grid-column: span 2; }
 .project-visual { min-height: 390px; position: relative; overflow: hidden; border-radius: 2px; }
 .wide .project-visual { min-height: 510px; }
+.browser-project-visual { min-height: 650px !important; background: var(--lime); }
+.browser-showcase { position: absolute; inset: 0; overflow: hidden; }
+.browser-showcase .visual-mark { z-index: 5; }
+.browser-window { position: absolute; overflow: hidden; border: 1px solid rgba(27,31,20,.2); border-radius: 9px; background: white; box-shadow: 0 24px 55px rgba(38,58,22,.22); }
+.browser-window-back { width: 62%; height: 64%; right: 4%; top: 10%; transform: rotate(2.2deg); opacity: .94; }
+.browser-window-front { width: 72%; height: 71%; left: 7%; bottom: 7%; transform: rotate(-1.2deg); z-index: 2; box-shadow: 0 28px 65px rgba(38,58,22,.3); }
+.browser-toolbar { height: 31px; display: flex; align-items: center; gap: 6px; padding: 0 11px; background: #f1f2ed; border-bottom: 1px solid rgba(27,31,20,.12); }
+.browser-toolbar i { width: 7px; height: 7px; border-radius: 50%; background: rgba(27,31,20,.22); }
+.browser-toolbar span { position: absolute; left: 50%; transform: translateX(-50%); font: 8px var(--font-space-mono), monospace; color: rgba(27,31,20,.48); }
+.browser-canvas { position: absolute; inset: 31px 0 0; overflow: hidden; background: #f5f2ec; }
+.browser-canvas img { object-fit: cover; object-position: top center; height: 106% !important; transform: translateY(-6%); }
 .tall .project-visual { min-height: 520px; }
 .project-visual.lime { background: var(--lime); }.project-visual.forest { background: #53713b; }.project-visual.paper { background: #e6e4d8; }.project-visual.olive { background: #9eaa72; }.project-visual.ink { background: #20241c; }.project-visual.mist { background: #dce8c7; }
 .visual-mark { position: absolute; z-index: 3; top: 24px; left: 24px; font: 11px var(--font-space-mono), monospace; }
@@ -553,6 +564,9 @@ footer {
   .project-grid { grid-template-columns: 1fr; }
   .project-card.wide { grid-column: span 1; }
   .project-visual, .wide .project-visual, .tall .project-visual { min-height: 370px; }
+  .browser-project-visual { min-height: 480px !important; }
+  .browser-window-back { width: 70%; height: 58%; right: -8%; top: 8%; }
+  .browser-window-front { width: 86%; height: 68%; left: 5%; bottom: 7%; }
   .statement-grid { grid-template-columns: 1fr; gap: 30px; }
   .process-grid { grid-template-columns: 1fr; }
   .process-card, .process-card + .process-card { padding: 28px 0; border-right: 0; border-bottom: 1px solid var(--line); min-height: auto; }

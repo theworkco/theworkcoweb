@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
@@ -28,8 +29,8 @@ const content: Homepage = {
   heroBody: 'A single pane of glass to view your portfolio, the news making an impact to it, and its performance.',
   primaryButton: {label: 'Read More', href: '#grid'}, secondaryButton: {label: 'Visit MRKTIMES', href: 'https://mrktimes.com'},
   services: ['Branding & Marketing', 'Product Development', 'Strategy & Design'],
-  projectsEyebrow: 'Lorem ipsum', projectsTitle: 'Dolor sit amet, consectetur elit.',
-  projectsIntro: 'Simplifying a view into your trading portfolio, so you can stay ahead of your next trade.',
+  projectsEyebrow: 'Our Work', projectsTitle: "Recent projects we're\nexcited about",
+  projectsIntro: "From product development to strategy, design and marketing. Here you'll find an overview of some of what we have been focusing on lately.",
   projects: fallbackProjects, statementEyebrow: 'Dolor sit amet',
   statementQuote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
   statementBody: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.',
@@ -69,8 +70,18 @@ export default function Home() {
         <div className="project-grid">{(content.projects?.length ? content.projects : fallbackProjects).map((project, index) => {
           const visualUrl = project.imageUrl || null
           return <Link href={project.href || '#'} className={`project-card ${project.size || 'standard'}`} key={`${project.number}-${index}`}>
-            <div className={`project-visual ${project.tone || 'lime'}`} style={visualUrl ? {backgroundImage: `url(${visualUrl})`, backgroundSize: 'cover', backgroundPosition: 'center'} : undefined}>
-              {!visualUrl && <><span className="visual-mark">{project.number}</span><div className="visual-orbit"/><div className="visual-block"/></>}
+            <div className={`project-visual ${project.tone || 'lime'} ${index === 0 ? 'browser-project-visual' : ''}`} style={visualUrl ? {backgroundImage: `url(${visualUrl})`, backgroundSize: 'cover', backgroundPosition: 'center'} : undefined}>
+              {index === 0 ? <div className="browser-showcase">
+                <span className="visual-mark">{project.number}</span>
+                <div className="browser-window browser-window-back">
+                  <div className="browser-toolbar"><i/><i/><i/><span>mrktimes.com</span></div>
+                  <div className="browser-canvas"><Image src="/images/mrktimes-dashboard.png" alt="MRKTIMES portfolio dashboard" fill sizes="(max-width: 900px) 82vw, 680px" /></div>
+                </div>
+                <div className="browser-window browser-window-front">
+                  <div className="browser-toolbar"><i/><i/><i/><span>mrktimes.com</span></div>
+                  <div className="browser-canvas"><Image src="/images/mrktimes-overview.png" alt="MRKTIMES market intelligence overview" fill sizes="(max-width: 900px) 88vw, 760px" /></div>
+                </div>
+              </div> : !visualUrl && <><span className="visual-mark">{project.number}</span><div className="visual-orbit"/><div className="visual-block"/></>}
             </div><div className="project-info"><div><span>{project.tag}</span><h3>{project.title}</h3></div><span className="project-arrow">↗</span></div>
           </Link>
         })}</div>
