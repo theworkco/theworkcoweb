@@ -4,7 +4,8 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
 type Button = {label?: string; href?: string}
-type Project = {number?: string; title?: string; tag?: string; href?: string; tone?: string; size?: string; imageUrl?: string}
+type BrowserShowcase = {front: string; back: string; label: string; alt: string; cropChrome?: boolean}
+type Project = {number?: string; title?: string; tag?: string; href?: string; tone?: string; size?: string; imageUrl?: string; browser?: BrowserShowcase}
 type ProcessStep = {number?: string; title?: string; copy?: string}
 type Homepage = {
   eyebrow?: string; heroTitle?: string; heroAccent?: string; heroBody?: string
@@ -16,8 +17,8 @@ type Homepage = {
 }
 
 const fallbackProjects: Project[] = [
-  {number: '01', title: 'Simple. Clean. Helpful', tag: 'Market Times', href: 'https://mrktimes.com', tone: 'lime', size: 'wide'},
-  {number: '02', title: 'Sit amet elit', tag: 'Adipiscing', tone: 'forest', size: 'standard'},
+  {number: '01', title: 'mrktimes.com - A dashboard view of your portfolio, seamlessly connected to Robinhood. Showing News and stock prices in one dynamic view', tag: 'Digital Product Launch', href: 'https://mrktimes.com', tone: 'lime', size: 'wide', browser: {front: '/images/mrktimes-overview.png', back: '/images/mrktimes-dashboard.png', label: 'mrktimes.com', alt: 'MRKTIMES market intelligence dashboard', cropChrome: true}},
+  {number: '02', title: 'olla.studio', tag: 'Digital Design', href: 'https://olla.studio', tone: 'forest', size: 'standard', browser: {front: '/images/olla-home.png', back: '/images/olla-contact.png', label: 'olla.studio', alt: 'Olla digital studio website'}},
   {number: '03', title: 'Sed do eiusmod', tag: 'Tempor', tone: 'paper', size: 'standard'},
   {number: '04', title: 'Incididunt ut labore', tag: 'Dolore', tone: 'olive', size: 'tall'},
   {number: '05', title: 'Magna aliqua enim', tag: 'Veniam', tone: 'ink', size: 'standard'},
@@ -70,16 +71,16 @@ export default function Home() {
         <div className="project-grid">{(content.projects?.length ? content.projects : fallbackProjects).map((project, index) => {
           const visualUrl = project.imageUrl || null
           return <Link href={project.href || '#'} className={`project-card ${project.size || 'standard'}`} key={`${project.number}-${index}`}>
-            <div className={`project-visual ${project.tone || 'lime'} ${index === 0 ? 'browser-project-visual' : ''}`} style={visualUrl ? {backgroundImage: `url(${visualUrl})`, backgroundSize: 'cover', backgroundPosition: 'center'} : undefined}>
-              {index === 0 ? <div className="browser-showcase">
+            <div className={`project-visual ${project.tone || 'lime'} ${project.browser ? `browser-project-visual browser-project-visual-${project.size || 'standard'}` : ''}`} style={visualUrl ? {backgroundImage: `url(${visualUrl})`, backgroundSize: 'cover', backgroundPosition: 'center'} : undefined}>
+              {project.browser ? <div className={`browser-showcase ${project.browser.cropChrome ? 'browser-showcase-cropped' : ''}`}>
                 <span className="visual-mark">{project.number}</span>
                 <div className="browser-window browser-window-back">
-                  <div className="browser-toolbar"><i/><i/><i/><span>mrktimes.com</span></div>
-                  <div className="browser-canvas"><Image src="/images/mrktimes-dashboard.png" alt="MRKTIMES portfolio dashboard" fill sizes="(max-width: 900px) 82vw, 680px" /></div>
+                  <div className="browser-toolbar"><i/><i/><i/><span>{project.browser.label}</span></div>
+                  <div className="browser-canvas"><Image src={project.browser.back} alt={`${project.browser.alt} alternate view`} fill sizes="(max-width: 900px) 82vw, 680px" /></div>
                 </div>
                 <div className="browser-window browser-window-front">
-                  <div className="browser-toolbar"><i/><i/><i/><span>mrktimes.com</span></div>
-                  <div className="browser-canvas"><Image src="/images/mrktimes-overview.png" alt="MRKTIMES market intelligence overview" fill sizes="(max-width: 900px) 88vw, 760px" /></div>
+                  <div className="browser-toolbar"><i/><i/><i/><span>{project.browser.label}</span></div>
+                  <div className="browser-canvas"><Image src={project.browser.front} alt={project.browser.alt} fill sizes="(max-width: 900px) 88vw, 760px" /></div>
                 </div>
               </div> : !visualUrl && <><span className="visual-mark">{project.number}</span><div className="visual-orbit"/><div className="visual-block"/></>}
             </div><div className="project-info"><div><span>{project.tag}</span><h3>{project.title}</h3></div><span className="project-arrow">↗</span></div>

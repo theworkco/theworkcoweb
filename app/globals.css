@@ -133,7 +133,9 @@ nav a.active {
 .project-card.wide { grid-column: span 2; }
 .project-visual { min-height: 390px; position: relative; overflow: hidden; border-radius: 2px; }
 .wide .project-visual { min-height: 510px; }
-.browser-project-visual { min-height: 650px !important; background: var(--lime); }
+.browser-project-visual { background: var(--lime); }
+.browser-project-visual-wide { min-height: 650px !important; }
+.browser-project-visual-standard { min-height: 390px !important; }
 .browser-showcase { position: absolute; inset: 0; overflow: hidden; }
 .browser-showcase .visual-mark { z-index: 5; }
 .browser-window { position: absolute; overflow: hidden; border: 1px solid rgba(27,31,20,.2); border-radius: 9px; background: white; box-shadow: 0 24px 55px rgba(38,58,22,.22); }
@@ -143,7 +145,10 @@ nav a.active {
 .browser-toolbar i { width: 7px; height: 7px; border-radius: 50%; background: rgba(27,31,20,.22); }
 .browser-toolbar span { position: absolute; left: 50%; transform: translateX(-50%); font: 8px var(--font-space-mono), monospace; color: rgba(27,31,20,.48); }
 .browser-canvas { position: absolute; inset: 31px 0 0; overflow: hidden; background: #f5f2ec; }
-.browser-canvas img { object-fit: cover; object-position: top center; height: 106% !important; transform: translateY(-6%); }
+.browser-canvas img { object-fit: cover; object-position: top center; }
+.browser-showcase-cropped .browser-canvas img { height: 106% !important; transform: translateY(-6%); }
+.browser-project-visual-standard .browser-window-back { width: 70%; height: 60%; right: -3%; top: 8%; }
+.browser-project-visual-standard .browser-window-front { width: 84%; height: 69%; left: 5%; bottom: 7%; }
 .tall .project-visual { min-height: 520px; }
 .project-visual.lime { background: var(--lime); }.project-visual.forest { background: #53713b; }.project-visual.paper { background: #e6e4d8; }.project-visual.olive { background: #9eaa72; }.project-visual.ink { background: #20241c; }.project-visual.mist { background: #dce8c7; }
 .visual-mark { position: absolute; z-index: 3; top: 24px; left: 24px; font: 11px var(--font-space-mono), monospace; }
@@ -564,7 +569,8 @@ footer {
   .project-grid { grid-template-columns: 1fr; }
   .project-card.wide { grid-column: span 1; }
   .project-visual, .wide .project-visual, .tall .project-visual { min-height: 370px; }
-  .browser-project-visual { min-height: 480px !important; }
+  .browser-project-visual-wide { min-height: 480px !important; }
+  .browser-project-visual-standard { min-height: 390px !important; }
   .browser-window-back { width: 70%; height: 58%; right: -8%; top: 8%; }
   .browser-window-front { width: 86%; height: 68%; left: 5%; bottom: 7%; }
   .statement-grid { grid-template-columns: 1fr; gap: 30px; }
