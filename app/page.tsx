@@ -21,6 +21,7 @@ const fallbackProjects: Project[] = [
   {number: '02', title: 'olla.studio', tag: 'Digital Design', href: 'https://olla.studio', tone: 'forest', size: 'standard', browser: {front: '/images/olla-home.png', back: '/images/olla-contact.png', label: 'olla.studio', alt: 'Olla digital studio website'}},
   {number: '03', title: 'whenisopeningday.com', tag: 'Digital Product Launch', href: 'https://whenisopeningday.com', tone: 'paper', size: 'standard', imageUrl: '/images/when-is-opening-day.png'},
   {number: '04', title: 'MileUno — A learner-driver companion that turns required hours into measurable experience and practical coaching', tag: 'Product Strategy · UX · Prototype', href: 'https://mileuno.vercel.app', tone: 'ink', size: 'standard'},
+  {number: '05', title: 'BDGA — A secure convenience store for API keys, access tokens, credentials, and other project secrets', tag: 'Product Development · Brand · UX', href: 'https://www.bdga.ai', tone: 'paper', size: 'wide', imageUrl: '/images/bdga-showcase.png'},
   // Additional project-card designs are intentionally hidden until their content is ready.
   // {number: '04', title: 'Incididunt ut labore', tag: 'Dolore', tone: 'olive', size: 'tall'},
   // {number: '05', title: 'Magna aliqua enim', tag: 'Veniam', tone: 'ink', size: 'standard'},
